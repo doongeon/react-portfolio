@@ -7,38 +7,37 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: #fefae0;
 `;
-
 const Header = styled.h1`
   display: block;
   text-align: center;
   font-size: 40px;
-  color: lightgreen;
+  color: #606c38;
 `;
 const Playground = styled.div`
-  width: 400px;
-  height: 400px;
+  width: 60vw;
+  height: 500px;
   border-radius: 15px;
   position: relative;
-  background-color: lightyellow;
+  background-color: #dda15e;
   overflow: hidden;
   padding: 5px;
 `;
-
 const Box = styled.div`
-  content: "";
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
-  width: 20px;
-  height: 20px;
   position: absolute;
   top: 50%;
   left: 50%;
-  background-color: lightgreen;
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
   border-radius: 50%;
   transition: ease-out 0.6s;
+  white-space: pre-wrap;
 `;
+
+
 const App = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [mouseEnter, setMouseEnter] = useState(false);
@@ -61,19 +60,21 @@ const App = () => {
     const box = boxRef.current;
     const playground = playgroundRef.current;
     if (mouseEnter && box && playground) {
+      // mouse enter
       const rect = playground.getBoundingClientRect();
+      const box_x = position.x - rect.left - box.offsetWidth / 2;
+      const box_y = position.y - rect.top - box.offsetHeight / 2;
       box.style.left = "0";
       box.style.top = "0";
-      const box_x = position.x - rect.left - 10;
-      const box_y = position.y - rect.top - 10;
       box.style.transform = `translate(${box_x}px, ${box_y}px)`;
-    } else {
-      const box = boxRef.current;
-      if (box) {
-        box.style.top = "50%";
-        box.style.left = "50%";
-        box.style.transform = "translate(-50%, -50%)";
-      }
+      return;
+    }
+
+    if (box) {
+      // mouse leave
+      box.style.top = "50%";
+      box.style.left = "50%";
+      box.style.transform = "translate(-50%, -50%)";
     }
   }, [mouseEnter, position]);
 
@@ -87,13 +88,19 @@ const App = () => {
   return (
     <>
       <Container>
-        <Header>Following Dot</Header>
+        <Header>Following</Header>
         <Playground
           ref={playgroundRef}
           onMouseEnter={catchMouseEnter}
           onMouseLeave={catchMouseLeave}
         >
-          <Box ref={boxRef} />
+          <Box ref={boxRef}>
+            <pre style={{ whiteSpace: "pre-wrap" }}>
+              {`int main(void) {
+  return 0;
+}`}
+            </pre>
+          </Box>
         </Playground>
       </Container>
     </>
