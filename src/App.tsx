@@ -1,10 +1,11 @@
-import FollowingDot from "./FollowingDot"
+import Router from "./routes";
 
 const App = () => {
-  return <>
-    App.
-    <FollowingDot></FollowingDot>
-  </>
-}
+  return (
+    <>
+      <Router />
+    </>
+  );
+};
 
 export default App;
