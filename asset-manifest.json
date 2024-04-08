@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "https://doongeon.github.io/react-portfolio//static/js/main.c6cd36e5.js",
-    "index.html": "https://doongeon.github.io/react-portfolio//index.html",
-    "main.c6cd36e5.js.map": "https://doongeon.github.io/react-portfolio//static/js/main.c6cd36e5.js.map"
+    "main.js": "/static/js/main.c6cd36e5.js",
+    "index.html": "/index.html",
+    "main.c6cd36e5.js.map": "/static/js/main.c6cd36e5.js.map"
   },
   "entrypoints": [
     "static/js/main.c6cd36e5.js"
